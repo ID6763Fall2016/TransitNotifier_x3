@@ -367,7 +367,6 @@ void setup() {
     }
 
     readBusXML();
-    numOfVehicles = 3;
     printOutBuses();
 
     // turn light on
