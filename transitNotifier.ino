@@ -35,10 +35,6 @@ class Vehicle
 // GT WIFI
 const char* ssid = "GTother";
 const char* password = "GeorgeP@1927";
-
-//// Home WIFI
-//const char* ssid = "ATT9SAU3Q5";
-//const char* password = "4rgj6%46pye2";
 const char* host = "gtbuses.herokuapp.com";
 
 /*
@@ -339,7 +335,7 @@ void setup() {
     // initialize the pushbutton pin as an input:
     pinMode(BUTTONPIN, INPUT);
 
-//    rotateLightingStars_D1();
+    rotateLightingStars_D1();
 
     /*
      * Setup app Request
@@ -370,44 +366,7 @@ void setup() {
 //      return;
     }
 
-//    readBusXML();
-
-//    Testing dotStar color
-    if(direction == TROLLEY_ROUTE_DIRECTION[0])
-    {
-        vehicles[0].vehicleID = "1";
-        vehicles[0].stopTag = "wpe7mrt";
-        vehicles[0].arrTime = "0";
-        vehicles[0].direction = direction;
-    
-        vehicles[1].vehicleID = "2";
-        vehicles[1].stopTag = "ferstdr";
-        vehicles[1].arrTime = "1";
-        vehicles[1].direction = direction;
-    
-        vehicles[2].vehicleID = "3";
-        vehicles[2].stopTag = "fersforec";
-        vehicles[2].arrTime = "4";
-        vehicles[2].direction = direction;
-    }
-    else
-    {
-        vehicles[0].vehicleID = "1";
-        vehicles[0].stopTag = "tech5mrt";
-        vehicles[0].arrTime = "0";
-        vehicles[0].direction = direction;
-    
-        vehicles[1].vehicleID = "1";
-        vehicles[1].stopTag = "tranhub_a";
-        vehicles[1].arrTime = "1";
-        vehicles[1].direction = direction;
-    
-        vehicles[2].vehicleID = "3";
-        vehicles[2].stopTag = "techsqua";
-        vehicles[2].arrTime = "6";
-        vehicles[2].direction = direction;
-    }
-
+    readBusXML();
     numOfVehicles = 3;
     printOutBuses();
 
@@ -601,7 +560,6 @@ void loop() {
     btnState = digitalRead(BUTTONPIN);
     updateLightStates(); // Could comment this when debugging mint=0
 
-//    Serial.println(btnState);
     
     // update button information  
     /*
@@ -611,7 +569,7 @@ void loop() {
     {
         initState();
         updateDummyData();
-//      readBusXML();
+        readBusXML();
         if(direction == TROLLEY_ROUTE_DIRECTION[1])
         {
             direction = TROLLEY_ROUTE_DIRECTION[0];
@@ -655,12 +613,12 @@ void loop() {
     /*
      * Send request every mins
      */
-//    if(curTime - preTime > 6000)
-//    {
-//        Serial.println("Send request again:");
-//        initState();
-//        readBusXML();
-//        printOutBuses();
-//        preTime = curTime;
-//    }
+    if(curTime - preTime > 6000)
+    {
+        Serial.println("Send request again:");
+        initState();
+        readBusXML();
+        printOutBuses();
+        preTime = curTime;
+    }
 }
